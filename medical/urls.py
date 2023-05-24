@@ -19,12 +19,14 @@ from django.urls import path,include
 from django.conf.urls.static import static
 from django.conf import settings
 from app.api import router
+from auth.api import auth_router
 from django.views.generic import RedirectView
 
 urlpatterns = [
 
     path('',RedirectView.as_view(url = 'api/v1/')), # redirects ('') to ('api/')
     path('api/v1/', include(router.urls)),
+    path('auth/v1/', include(auth_router.urls)),
     path('admin/', admin.site.urls),
 ]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
