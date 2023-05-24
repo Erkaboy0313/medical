@@ -27,9 +27,9 @@ SECRET_KEY = env('SECRET_KEY',cast=str,default='django-insecure-llsmfdwoej234m32
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG',cast=bool,default=True)
-ALLOWED_HOSTS = list(env('ALLOWED_HOSTS',cast=CommaSeparatedStrings,default=[]))
+ALLOWED_HOSTS = ['*']
 # Application definition
-
+CORS_ORIGIN_ALLOW_ALL = True
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,9 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'app.apps.AppConfig',
+    'parler',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -112,6 +114,17 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+PARLER_LANGUAGES = {
+    None: (
+        {'code': 'ru',},
+        {'code': 'uz',},
+    ),
+    'default': {
+        'fallbacks': ['ru'],
+        'hide_untranslated': False,   # Default
+    }
+}
 
 
 # Static files (CSS, JavaScript, Images)
