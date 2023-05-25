@@ -29,6 +29,7 @@ class Contact(TranslatableModel):
     facebook = models.CharField(max_length=200,null=True,blank=True)
 
     class Meta:
+        ordering = ['-id']
         verbose_name_plural = 'Contacts'
     
     def __str__(self):
@@ -85,6 +86,7 @@ class AboutUs(TranslatableModel):
     image = models.ImageField(upload_to='aboutus/')
 
     class Meta:
+        ordering = ['-id']
         verbose_name_plural = 'AboutUs'
 
 class Statistic(models.Model):
