@@ -92,6 +92,9 @@ class Statistic(models.Model):
     services = models.IntegerField()
     doctors = models.IntegerField()
 
+    class Meta:
+        ordering = ['-id']
+
     def __str__(self):
         return f"{self.patients} | {self.services} | {self.doctors}"
     
