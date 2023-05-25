@@ -75,6 +75,8 @@ class Doctor(TranslatableModel):
         bio = models.TextField(null=True,blank=True),
         admission = models.CharField(max_length=200,null=True,blank=True)
     )
+    image = models.ImageField(upload_to='doctors/',null=True,blank=True)
+    
     class Meta:
         ordering = ['id']
         verbose_name_plural = 'Services'

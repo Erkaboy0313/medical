@@ -1,5 +1,7 @@
-from rest_framework import viewsets,permissions
+from rest_framework import viewsets,permissions,status
+from rest_framework.response import Response
 from .serializers import *
+import json
 # Create your views here.
 
 class ContactView(viewsets.ModelViewSet):
@@ -27,6 +29,16 @@ class AboutUsView(viewsets.ModelViewSet):
             permission_classes = [permissions.IsAdminUser]
         return [permission() for permission in permission_classes]
 
+    def create(self, request, *args, **kwargs):
+        d = request.data
+        if not type(d) == type({}):
+            d._mutable = True
+        d['translations'] = json.loads(request.data.get('translations'))
+        serializer = self.get_serializer(data = d)
+        serializer.is_valid(raise_exception = True)
+        serializer.save()
+        return Response({"message":'created'},status=status.HTTP_200_OK)
+
     def get_queryset(self):
         return [self.queryset[0]]
 
@@ -40,6 +52,16 @@ class NewsView(viewsets.ModelViewSet):
         else:
             permission_classes = [permissions.IsAdminUser]
         return [permission() for permission in permission_classes]
+
+    def create(self, request, *args, **kwargs):
+        d = request.data
+        if not type(d) == type({}):
+            d._mutable = True
+        d['translations'] = json.loads(request.data.get('translations'))
+        serializer = self.get_serializer(data = d)
+        serializer.is_valid(raise_exception = True)
+        serializer.save()
+        return Response({"message":'created'},status=status.HTTP_200_OK)
 
 class VacancyView(viewsets.ModelViewSet):
     queryset = Vacancy.objects.all()
@@ -63,6 +85,16 @@ class ServiceView(viewsets.ModelViewSet):
             permission_classes = [permissions.IsAdminUser]
         return [permission() for permission in permission_classes]
 
+    def create(self, request, *args, **kwargs):
+        d = request.data
+        if not type(d) == type({}):
+            d._mutable = True
+        d['translations'] = json.loads(request.data.get('translations'))
+        serializer = self.get_serializer(data = d)
+        serializer.is_valid(raise_exception = True)
+        serializer.save()
+        return Response({"message":'created'},status=status.HTTP_200_OK)
+
 class DoctorView(viewsets.ModelViewSet):
     queryset = Doctor.objects.all()
     serializer_class = DoctorSerializer
@@ -73,6 +105,16 @@ class DoctorView(viewsets.ModelViewSet):
         else:
             permission_classes = [permissions.IsAdminUser]
         return [permission() for permission in permission_classes]
+
+    def create(self, request, *args, **kwargs):
+        d = request.data
+        if not type(d) == type({}):
+            d._mutable = True
+        d['translations'] = json.loads(request.data.get('translations'))
+        serializer = self.get_serializer(data = d)
+        serializer.is_valid(raise_exception = True)
+        serializer.save()
+        return Response({"message":'created'},status=status.HTTP_200_OK)
 
 class ContactUsView(viewsets.ModelViewSet):
     queryset = ContactUs.objects.all()
