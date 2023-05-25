@@ -13,9 +13,6 @@ class News(TranslatableModel):
     class Meta:
         ordering = ['id']
         verbose_name_plural = 'News'
-
-    def __str__(self):
-        return self.title
     
 class Contact(TranslatableModel):
     translations = TranslatedFields(

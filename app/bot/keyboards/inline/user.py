@@ -8,3 +8,11 @@ confirm = types.InlineKeyboardMarkup(
         ],
     ]
 )
+
+commands = types.InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            types.InlineKeyboardButton(text="Yangilik qo'shish", callback_data='news')
+        ]
+    ]
+)

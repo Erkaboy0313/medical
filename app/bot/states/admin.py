@@ -2,7 +2,9 @@ from aiogram.dispatcher.filters.state import State, StatesGroup
 
 
 class NewsState(StatesGroup):
-    title = State()
-    description = State()
+    titleuz = State()
+    titleru = State()
+    descriptionuz = State()
+    descriptionru = State()
     image = State()
     confirm = State()

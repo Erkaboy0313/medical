@@ -27,11 +27,11 @@ class LoginView(viewsets.ViewSet):
 
 class SecurityView(viewsets.ViewSet):
     permission_classes = (permissions.IsAuthenticated,)
-
+    
     def list(self,request):
         return Response({'messge':'not allowed'})
 
-    def update(self, request, *args, **kwargs):
+    def create(self, request, *args, **kwargs):
         try:
             user = request.user
             if not user.check_password(request.data.get('old_password')):
