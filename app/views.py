@@ -97,7 +97,7 @@ class QvpView(viewsets.ModelViewSet):
         return [permission() for permission in permission_classes]
 
 class StatisticView(viewsets.ModelViewSet):
-    queryset = ContactUs.objects.all()
+    queryset = Statistic.objects.all()
     serializer_class = StatisticSerializer
     
     def get_permissions(self):
