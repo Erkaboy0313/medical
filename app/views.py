@@ -141,3 +141,14 @@ class StatisticView(viewsets.ModelViewSet):
         else:
             permission_classes = [permissions.IsAdminUser]
         return [permission() for permission in permission_classes]
+
+class GalaryView(viewsets.ModelViewSet):
+    queryset = Galary.objects.all()
+    serializer_class = GalarySerializer
+
+    def get_permissions(self):
+        if self.action == 'list' or self.action == 'retrieve':
+            permission_classes = [permissions.AllowAny]
+        else:
+            permission_classes = [permissions.IsAdminUser]
+        return [permission() for permission in permission_classes]

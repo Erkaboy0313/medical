@@ -1,6 +1,6 @@
 from rest_framework.routers import DefaultRouter,SimpleRouter
 from django.conf import settings
-from .views import ContactView,AboutUsView,NewsView,VacancyView,ServiceView,DoctorView,ContactUsView,StatisticView,QvpView
+from .views import ContactView,AboutUsView,NewsView,VacancyView,ServiceView,DoctorView,ContactUsView,StatisticView,QvpView,GalaryView
 
 if settings.DEBUG:
     router = DefaultRouter()
@@ -16,3 +16,4 @@ router.register(r'doctor',DoctorView,basename='doctor')
 router.register(r'contactus',ContactUsView,basename='contactus')
 router.register(r'home',StatisticView,basename='home')
 router.register(r'qvp',QvpView,basename='qvp')
+router.register(r'galary',GalaryView,basename='galary')

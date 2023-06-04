@@ -8,12 +8,16 @@ class News(TranslatableModel):
         description = models.TextField(null=True,blank=True)
     )
     image = models.ImageField(upload_to='news/',null=True,blank=True)
+    video = models.FileField(upload_to='news/',null=True,blank=True)
     date = models.DateField(auto_now_add=True)
 
     class Meta:
         ordering = ['id']
         verbose_name_plural = 'News'
     
+class Galary(models.Model):
+    image = models.ImageField(upload_to="galary",null=True,blank=True) 
+
 class Contact(TranslatableModel):
     translations = TranslatedFields(
         address = models.CharField(max_length=255,null=True,blank=True)

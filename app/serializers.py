@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from . models import AboutUs,ContactUs,News,Contact,Vacancy,Service,Doctor,Statistic,Qvp
+from . models import AboutUs,ContactUs,News,Contact,Vacancy,Service,Doctor,Statistic,Qvp,Galary
 from parler_rest.serializers import TranslatableModelSerializer
 from parler_rest.fields import TranslatedFieldsField
 from . mixins import TranslatedSerializerMixin
@@ -46,6 +46,11 @@ class QvpSerializer(TranslatedSerializerMixin,TranslatableModelSerializer):
         model = Qvp
         fields = "__all__"
 
+class GalarySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Galary
+        fields = '__all__'
+           
 class CuntuctUsSerializer(serializers.ModelSerializer):
     class Meta:
         model = ContactUs
