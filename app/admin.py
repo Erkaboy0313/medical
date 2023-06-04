@@ -33,3 +33,5 @@ class AboutUsAdmin(TranslatableAdmin):
 @admin.register(Qvp)
 class QvpAdmin(TranslatableAdmin):
     list_display = ('address',)
+
+admin.site.register(Galary)
