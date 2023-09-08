@@ -5,6 +5,7 @@ from parler.admin import TranslatableAdmin
 
 admin.site.register(ContactUs)
 admin.site.register(Statistic)
+admin.site.register(Image)
 
 @admin.register(News)
 class AboutUsAdmin(TranslatableAdmin):

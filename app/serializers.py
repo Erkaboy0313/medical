@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from . models import AboutUs,ContactUs,News,Contact,Vacancy,Service,Doctor,Statistic,Qvp,Galary
+from . models import AboutUs,ContactUs,News,Contact,Vacancy,Service,Doctor,Statistic,Qvp,Galary,Image
 from parler_rest.serializers import TranslatableModelSerializer
 from parler_rest.fields import TranslatedFieldsField
 from . mixins import TranslatedSerializerMixin
@@ -10,8 +10,14 @@ class AboutUsSerializer(TranslatedSerializerMixin,TranslatableModelSerializer):
         model = AboutUs
         fields = "__all__" 
 
+class ImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Image
+        fields = ['image']
+
 class NewsSerializer(TranslatedSerializerMixin,TranslatableModelSerializer):
     translations = TranslatedFieldsField(shared_model = News)
+    image_set = ImageSerializer(many = True,read_only = True)
     class Meta:
         model = News
         fields = "__all__" 
@@ -21,7 +27,7 @@ class ContactSerializer(TranslatedSerializerMixin,TranslatableModelSerializer):
     class Meta:
         model = Contact
         fields = "__all__" 
-
+    
 class VacancySerializer(TranslatedSerializerMixin,TranslatableModelSerializer):
     translations = TranslatedFieldsField(shared_model = Vacancy)
     class Meta:

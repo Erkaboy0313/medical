@@ -45,22 +45,19 @@ class AboutUsView(viewsets.ModelViewSet):
 class NewsView(viewsets.ModelViewSet):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
+    permission_classes = (permissions.AllowAny,)
     
-    def get_permissions(self):
-        if self.action == 'list' or self.action == 'retrieve':
-            permission_classes = [permissions.AllowAny]
-        else:
-            permission_classes = [permissions.IsAdminUser]
-        return [permission() for permission in permission_classes]
-
     def create(self, request, *args, **kwargs):
         d = request.data
+        images = request.data.getlist('images')
         if not type(d) == type({}):
             d._mutable = True
         d['translations'] = json.loads(request.data.get('translations'))
         serializer = self.get_serializer(data = d)
         serializer.is_valid(raise_exception = True)
-        serializer.save()
+        news = serializer.save()
+        for image in images:
+            Image.objects.create(news = news, image = image)
         return Response({"message":'created'},status=status.HTTP_200_OK)
 
 class VacancyView(viewsets.ModelViewSet):
