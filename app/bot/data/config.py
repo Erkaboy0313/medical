@@ -7,7 +7,7 @@ env = Config(".env")
 # environs kutubxonasidan foydalanish
 
 # .env fayl ichidan quyidagilarni o'qiymiz
-BOT_TOKEN ="6642650076:AAGaLvx34uhm7ubip--Zhw9GsTddCUI2QL4"  # Bot toekn
+BOT_TOKEN ="5945475357:AAFLaOgIuir35eXXHTBHBaE7-PbMlwINfn8"  # Bot toekn
 print(BOT_TOKEN)
 ADMINS = list(env("ADMINS",cast=CommaSeparatedStrings))  # adminlar ro'yxati
 IP = env("ip",cast=str)  # Xosting ip manzili
