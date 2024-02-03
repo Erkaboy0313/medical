@@ -1,10 +1,10 @@
 from aiogram import types
-from aiogram.dispatcher.filters.builtin import CommandStart
 from ...data.config import ADMINS
-from ...loader import dp,bot
+from ...loader import dp
+from ...main import bot
 from ...states.admin import NewsState
-from aiogram.dispatcher import FSMContext
-from aiogram.types import ContentTypes
+from aiogram.fsm.context import FSMContext
+from aiogram.enums.content_type import ContentType
 from ...keyboards.inline.user import confirm,commands
 from ....models import News
 from django.core.files import File
@@ -12,9 +12,7 @@ from django.core.files import File
 # from app.models import News
 
 # from app.models import News
-@dp.message_handler(CommandStart(), chat_id =ADMINS)
-async def bot_start(message: types.Message):
-    await message.answer(f"Hush keilib siz",reply_markup=commands)
+
 
 @dp.callback_query_handler(lambda call: call.data == 'news',chat_id =ADMINS)
 async def start_news(call:types.CallbackQuery):
@@ -46,8 +44,8 @@ async def set_title(message:types.Message,state:FSMContext):
     await message.answer('Yangilik uchun rasm yuklang')
     await NewsState.image.set()
 
-@dp.message_handler(chat_id =ADMINS,state=NewsState.image,content_types=ContentTypes.PHOTO)
-@dp.message_handler(chat_id =ADMINS,state=NewsState.image,content_types=ContentTypes.DOCUMENT)
+@dp.message_handler(chat_id =ADMINS,state=NewsState.image,content_types=ContentType.PHOTO)
+@dp.message_handler(chat_id =ADMINS,state=NewsState.image,content_types=ContentType.DOCUMENT)
 async def set_image(message:types.Message,state:FSMContext):
     data = await state.get_data()
     text = f"🇺🇿\n{data['titleuz']}\n{data['descriptionuz']}\n\n🇷🇺\n{data['titleru']}\n{data['descriptionru']}"
